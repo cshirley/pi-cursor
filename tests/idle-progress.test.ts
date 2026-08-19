@@ -159,6 +159,8 @@ describe("idle progress classification", () => {
         () => {},
       ),
     ).toBe("work");
+    // The write is acknowledged, the store stays at its bound, and the blob that
+    // was evicted to make room is the oldest one rather than the incoming one.
     expect(frames).toHaveLength(1);
     expect(store.size).toBe(MAX_ACTIVE_BLOB_ENTRIES);
     expect(store.has("0000")).toBe(false);
